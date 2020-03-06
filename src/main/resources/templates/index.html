@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li th:each="u : ${users}" th:text="${u.name}"></li>
+</ul>
+
+<table>
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Surname</td>
+        <td>Action</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="u :${users}">
+        <td th:text="${u.name}"></td>
+        <td th:text="${u.surname}"></td>
+        <td><a th:href="@{|/deleteUser/${u.id}|}"> Delete </a></td>
+    </tr>
+    </tbody>
+</table>
+
+<form action="#" th:action="@{/addUser}" method="post" th:object="${user}" enctype="multipart/form-data">
+    <input type="text" th:field="*{name}" placeholder="Name"/>
+    <input type="text" th:field="*{surname}" placeholder="Surname"/>
+    <input type="file" name="picture" multiple="multiple" accept="image/*"/>
+    <input type="submit" value="Send">
+</form>
+
+</body>
+</html>
